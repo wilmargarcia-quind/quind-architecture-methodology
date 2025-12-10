@@ -31,7 +31,7 @@ El objetivo del KR1 es definir el alcance funcional y técnico del servicio de A
 
 ---
 
-## 3. Respuestas a preguntas clave de valor del servicio de Arquitectura de Soluciones QUIND
+.## 3. Respuestas a preguntas clave de valor del servicio de Arquitectura de Soluciones QUIND
 _Esta sección consolida las respuestas detalladas a las preguntas estratégicas que definen la propuesta de valor y el posicionamiento del servicio de Arquitectura de Soluciones QUIND._
 
 ### **¿Qué problema real le vamos a quitar de encima al cliente y cómo lo va a notar en su bolsillo o en su agenda?**
@@ -287,3 +287,203 @@ A diferencia de consultoras globales con playbooks genéricos:
 - El equipo de arquitectura que el cliente desearía tener in-house
 - El partner técnico que reduce riesgos mediante validación pragmática
 - El habilitador que transfiere conocimiento, no dependencia
+
+---
+
+### **¿Cómo nos articulamos con arquitectos y desarrolladores seniors del cliente? ¿Hasta dónde colaborar?**
+
+#### **El desafío: Agregar valor sin generar fricción**
+
+Cuando el cliente ya cuenta con arquitectos o desarrolladores seniors con capacidad de diseño, pueden surgir tres escenarios problemáticos:
+
+1. **Competencia percibida**: El equipo interno ve a QUIND como "reemplazo" o amenaza a su autoridad técnica.
+2. **Ambigüedad de roles**: No está claro quién decide qué, generando parálisis o conflictos.
+3. **Duplicación de esfuerzos**: Dos equipos diseñando arquitecturas en paralelo sin coordinación.
+
+**La mejor práctica de la industria es clara**: Los arquitectos externos deben colaborar estrechamente con los expertos del dominio internos, NO sustituirlos. El conocimiento del negocio reside en el equipo del cliente; la experiencia cross-industry y en patrones modernos reside en QUIND.
+
+---
+
+#### **Modelo de articulación QUIND: Framework de Co-Creación Arquitectónica**
+
+QUIND opera bajo un modelo de **"Arquitectura Co-Creada"**, donde ambos equipos tienen roles complementarios claramente definidos:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│          MODELO DE CO-CREACIÓN ARQUITECTÓNICA               │
+│                                                             │
+│   ┌──────────────────┐              ┌──────────────────┐   │
+│   │  EQUIPO CLIENTE  │◄────────────►│   EQUIPO QUIND   │   │
+│   │                  │              │                  │   │
+│   │ • Conocimiento   │              │ • Patrones       │   │
+│   │   del dominio    │              │   modernos       │   │
+│   │ • Contexto de    │   DECISIÓN   │ • Experiencia    │   │
+│   │   negocio        │   CONJUNTA   │   cross-industry │   │
+│   │ • Restricciones  │              │ • Validación     │   │
+│   │   operativas     │              │   técnica        │   │
+│   │ • Sistemas       │              │ • Best practices │   │
+│   │   existentes     │              │   cloud/data/QA  │   │
+│   └──────────────────┘              └──────────────────┘   │
+│            │                                │               │
+│            └────────────┬───────────────────┘               │
+│                         ▼                                   │
+│              ARQUITECTURA VALIDADA                          │
+│        (Viable técnicamente + Aplicable al negocio)         │
+└─────────────────────────────────────────────────────────────┘
+```
+
+---
+
+#### **Matriz de responsabilidades: Quién hace qué (Modelo RACI adaptado)**
+
+| **Actividad Arquitectónica** | **Equipo Cliente** | **QUIND** | **Decisión Final** |
+|------------------------------|-------------------|-----------|-------------------|
+| **Definición de requisitos funcionales y no funcionales** | **Responsable** (R) | Consultor (C) | Cliente |
+| **Análisis de sistemas legados y dependencias** | **Responsable** (R) | Apoyo (A) | Cliente |
+| **Propuesta de estilos arquitectónicos candidatos** | Consultor (C) | **Responsable** (R) | Conjunta |
+| **Evaluación de trade-offs y scoring de opciones** | Participa (I) | **Responsable** (R) | Conjunta |
+| **Decisión arquitectónica final (ADR)** | **Co-responsable** | **Co-responsable** | Conjunta con sponsor ejecutivo |
+| **Diseño de componentes críticos (diagramas C4)** | Revisor (I) | **Responsable** (R) | QUIND (con aprobación cliente) |
+| **Validación técnica con PoCs** | Participa (I) | **Responsable** (R) | QUIND |
+| **Definición de estándares de código y arquitectura** | Consultor (C) | **Responsable** (R) | Conjunta |
+| **Implementación de la arquitectura** | **Responsable** (R) | Apoyo/Revisión (A/C) | Cliente |
+| **Revisiones arquitectónicas periódicas (health checks)** | Participa (I) | **Responsable** (R) | QUIND |
+| **Evolución y mantenimiento a largo plazo** | **Responsable** (R) | Opcional (disponible si se contrata) | Cliente |
+
+**Leyenda:**
+- **R (Responsible)**: Ejecuta la actividad
+- **A (Accountable)**: Responsable final del resultado
+- **C (Consulted)**: Debe ser consultado antes de decidir
+- **I (Informed)**: Debe ser informado del resultado
+
+---
+
+#### **Modelos de servicio según madurez del cliente**
+
+QUIND adapta su nivel de involucramiento según la madurez arquitectónica del cliente, ofreciendo tres modelos comerciales:
+
+| **Modelo** | **Perfil del Cliente** | **Rol de QUIND** | **Límite de Colaboración** | **Ejemplo** |
+|-----------|----------------------|-----------------|---------------------------|-------------|
+| **Design & Transfer** (Arquitectura + Mentoría) | Cliente con arquitectos seniors o developers expertos que buscan validación externa | Advisor estratégico + Validador técnico. Facilitamos talleres (Event Storming, ADRs), revisamos propuestas, validamos con PoCs, transferimos conocimiento en patrones específicos | Hasta validación técnica y recomendaciones documentadas. Cliente lidera implementación. Health checks opcionales trimestrales | Banco con equipo robusto migrando a microservicios: QUIND facilita DDD, propone Strangler Pattern, define ADRs, cliente ejecuta |
+| **Co-Build** (Arquitectura + Implementación Híbrida) | Cliente con developers seniors sin experiencia en arquitecturas modernas, o necesita acelerar time-to-market | Arquitecto líder + Mentor. Lideramos diseño con participación del cliente, implementamos componentes críticos, capacitamos mediante pair programming, transferimos decisiones progresivamente | Hasta finalización de componentes core (3-6 meses). Incluye capacitación formal. Soporte opcional post-implementación | Fintech experta en pagos sin experiencia event-driven: QUIND diseña arquitectura Kafka, implementa 2-3 bounded contexts de referencia, cliente implementa restantes con acompañamiento |
+| **Full Build** (Arquitectura + Implementación Completa) | Cliente sin capacidad arquitectónica interna, startup que no puede contratar arquitecto full-time, o prefiere enfocarse en negocio | Arquitecto ejecutivo + Capacitador continuo. Lideramos diseño, implementamos solución completa con equipos multidisciplinarios (Dev, QA, DevOps, Data), capacitamos mediante shadowing | Sin límite de tiempo: servicio continuo mientras se necesite. Incluye evolución arquitectónica y nuevas capacidades. Cliente puede terminar cuando sea autónomo | Healthtech Serie B cumpliendo Supersalud: QUIND diseña e implementa solución completa, capacita equipo, permanece on-demand para nuevas funcionalidades |
+
+**Composición del equipo QUIND en modelos Co-Build y Full Build:**
+
+```
+┌────────────────────────────────────────────────────────┐
+│       EQUIPO QUIND MULTIDISCIPLINARIO                  │
+│                                                        │
+│  Arquitecto       →  Diseño y decisiones técnicas     │
+│  Developers       →  Implementación de features        │
+│  QA Engineers     →  Testing automatizado y manual     │
+│  DevOps/SRE       →  CI/CD, infraestructura, deployment│
+│  Data Engineers   →  Pipelines de datos y analytics    │
+│                                                        │
+│  Todos reportan al Tech Lead de QUIND y al            │
+│  sponsor ejecutivo del cliente                         │
+└────────────────────────────────────────────────────────┘
+```
+
+**Ventajas de los modelos Co-Build y Full Build:**
+- Un solo proveedor responsable de arquitectura + implementación + calidad
+- Coherencia total entre diseño y ejecución (no hay "pérdida en la traducción")
+- Velocidad de ejecución superior (equipo sincronizado desde día 1)
+- Menor riesgo de que la implementación se desvíe de la arquitectura original
+
+**Riesgo mitigado: "Juez y Parte"**
+- Se mitiga mediante ADRs documentados y revisiones con stakeholders del cliente
+- El cliente mantiene autoridad de aprobación en decisiones arquitectónicas críticas
+- Auditorías externas opcionales en proyectos críticos
+
+---
+
+#### **Mecanismos de colaboración efectiva (aplicables a todos los modelos)**
+
+Para que la articulación funcione, QUIND implementa estas prácticas obligatorias:
+
+**1. Kick-off de alineación (Día 1)**
+- Workshop de 4 horas con equipo técnico del cliente
+- Clarificación de roles, responsabilidades y canales de comunicación
+- Firma de matriz RACI adaptada al contexto del proyecto
+- Definición de rituales de sincronización (dailies, weeklies, ADR reviews)
+
+**2. Architecture Decision Records (ADRs) compartidos**
+- Toda decisión arquitectónica se documenta en ADR conjunto
+- Formato: Contexto, Opciones evaluadas, Decisión, Consecuencias
+- Repositorio compartido (GitHub, Confluence, Notion)
+- Ambos equipos pueden proponer ADRs, ambos deben aprobar
+
+**3. Talleres de arquitectura colaborativos**
+- Event Storming sessions (para arquitecturas event-driven)
+- C4 Model workshops (para diseño de componentes)
+- Architecture Fitness Functions definition (para métricas de calidad arquitectónica)
+- Participación obligatoria de arquitectos/seniors del cliente
+
+**4. PoCs con participación del cliente**
+- Desarrolladores del cliente participan en PoCs críticos
+- Pair programming en componentes complejos
+- Objetivo: transferir conocimiento práctico, no solo documentar
+
+**5. Revisiones de arquitectura periódicas**
+- Weekly architecture sync (30 min): estado de decisiones, bloqueos técnicos
+- Monthly architecture review (2 hrs): health check de adherencia a patrones, deuda técnica
+- Quarterly strategy review (4 hrs): evolución, nuevas capacidades, roadmap técnico
+
+---
+
+**TODO:** Definir claramente qué servicios están completamente fuera del alcance de QUIND como empresa (vs. servicios que no están incluidos en el paquete base de Arquitectura pero QUIND sí puede ofrecer por separado). Requiere validación interna de capacidades actuales y estrategia comercial.
+
+---
+
+#### **Estrategia de salida: Garantizando autonomía del cliente**
+
+Independientemente del modelo de servicio elegido, QUIND implementa estas prácticas para asegurar que el cliente pueda "caminar solo":
+
+**1. Documentación exhaustiva y transferible**
+- ADRs con justificación de cada decisión arquitectónica
+- Runbooks operativos para despliegue y troubleshooting
+- Diagramas C4 (contexto, contenedores, componentes, código) actualizados
+- Repositorio de conocimiento (wiki/Confluence) con guías técnicas
+
+**2. Capacitación continua durante la ejecución**
+- Pair programming: developers del cliente trabajan junto a developers de QUIND
+- Code reviews compartidos: ambos equipos revisan el código producido
+- Shadowing en decisiones arquitectónicas: equipo del cliente participa en ADRs
+- Workshops técnicos semanales sobre patrones implementados
+
+**3. Transición gradual de responsabilidades**
+- Fases 1-2 (meses 1-3): QUIND lidera desarrollo, cliente observa y aprende
+- Fases 3-4 (meses 4-6): Desarrollo conjunto, cliente asume features menos críticos
+- Fases 5-6 (meses 7+): Cliente lidera desarrollo, QUIND supervisa y apoya
+
+**4. Handover formal al finalizar el engagement**
+- Sesiones de knowledge transfer (2-3 días) cubriendo toda la arquitectura implementada
+- Entrega de repositorio de código con README exhaustivo
+- Acceso a playbooks de troubleshooting para incidentes comunes
+- 30-60 días de soporte post-handover incluido (canal de consultas asíncronas)
+
+**5. Opcionalidad de soporte continuo (no obligatorio)**
+- Cliente puede contratar soporte on-demand (banco de horas mensual)
+- O puede terminar completamente la relación con QUIND sin penalización
+- No existen lock-ins contractuales ni dependencias técnicas forzadas (código en repositorios del cliente, infra en sus cuentas cloud)
+
+---
+
+#### **Indicadores de éxito de la colaboración**
+
+¿Cómo sabemos que la articulación está funcionando?
+
+| **Indicador** | **Métrica** | **Objetivo** |
+|--------------|------------|-------------|
+| **Autonomía progresiva del cliente** | Porcentaje de ADRs liderados por el cliente (vs. QUIND) | Incremento de 20% a 70% en 6 meses |
+| **Calidad de decisiones conjuntas** | Número de ADRs que requieren reversión | Menos de 10% |
+| **Satisfacción del equipo técnico del cliente** | NPS del equipo de desarrollo hacia QUIND | Mayor o igual a 8/10 |
+| **Velocidad de onboarding de conocimiento** | Tiempo para que un developer del cliente implemente un patrón sin supervisión | Reducción de 4 semanas a 1 semana |
+| **Alineación en revisiones arquitectónicas** | Porcentaje de acuerdo en health checks (hallazgos vs. expectativas) | Mayor o igual a 85% |
+
+---
+
+#### **Síntesis: El modelo de colaboración en una frase**
+
+> **"QUIND actúa como el arquitecto senior que el cliente necesita pero adaptándose a la madurez de su equipo: desde advisor estratégico hasta líder técnico, siempre con el objetivo de transferir capacidad y lograr autonomía progresiva, nunca generar dependencia permanente."**
