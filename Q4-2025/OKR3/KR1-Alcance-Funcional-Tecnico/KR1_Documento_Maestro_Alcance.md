@@ -581,3 +581,142 @@ Reconocemos que esto crea un conflicto de interés potencial. Sin embargo, acept
 3. **El cliente mantiene control**: Puede cuestionar decisiones, exigir auditorías independientes y tiene acceso completo al razonamiento técnico de cada elección arquitectónica.
 
 > **En resumen:** QUIND SÍ es juez y parte, pero con controles que garantizan que actuamos en beneficio del cliente, no en el nuestro.
+
+---
+
+### **¿El cliente quedará atado a QUIND o de verdad podrá caminar solo?**
+
+#### **Respuesta directa: El cliente PUEDE caminar solo, pero debe estar dispuesto a aprender**
+
+**La realidad honesta:**
+
+El nivel de dependencia del cliente hacia QUIND depende directamente de dos factores:
+
+1. **Modelo de servicio elegido**:
+   - **Design & Transfer**: Dependencia mínima (solo durante fase de diseño)
+   - **Co-Build**: Dependencia temporal mientras se transfiere conocimiento
+   - **Full Build**: Riesgo de dependencia mayor si el cliente no invierte en capacitación de su equipo
+
+2. **Compromiso del cliente con la transferencia de conocimiento**:
+   - Si el cliente participa activamente (pair programming, shadowing, ADRs), logra autonomía
+   - Si el cliente delega 100% y no aprende, quedará dependiente (de QUIND o de cualquier otro proveedor)
+
+---
+
+#### **Estrategia anti-dependencia de QUIND**
+
+QUIND implementa cuatro pilares para garantizar que el cliente pueda "caminar solo":
+
+**1. Ownership total del cliente sobre código e infraestructura**
+
+Desde el día 1:
+- **Código fuente**: Repositorios en cuentas del cliente (GitHub/GitLab/Bitbucket del cliente), no de QUIND
+- **Infraestructura cloud**: Cuentas del proveedor (GCP/AWS/Azure) a nombre del cliente, no de QUIND
+- **Secretos y credenciales**: Almacenados en gestores del cliente (Secret Manager, Vault), acceso revocable a QUIND en cualquier momento
+- **Licencias de herramientas**: Adquiridas por el cliente directamente, no revendidas por QUIND
+
+**Esto significa:**
+- El cliente puede terminar la relación con QUIND en cualquier momento sin perder acceso a nada
+- No existen activos técnicos críticos en posesión exclusiva de QUIND
+
+**2. Arquitecturas basadas en estándares abiertos (No lock-in técnico)**
+
+QUIND se compromete a NO crear dependencias técnicas artificiales:
+
+| **Anti-patrón (genera dependencia)** | **Patrón QUIND (evita dependencia)** |
+|--------------------------------------|--------------------------------------|
+| Usar frameworks propietarios de QUIND | Usar frameworks open-source estándar de la industria (Spring Boot, NestJS, FastAPI) |
+| Abstracciones custom que solo QUIND entiende | Patrones arquitectónicos documentados públicamente (DDD, CQRS, Event Sourcing) |
+| Dependencia de servicios exclusivos de un proveedor cloud | Arquitecturas multi-cloud o cloud-agnostic donde sea posible (Kubernetes, Terraform) |
+| Configuraciones complejas sin documentación | Infraestructura como código (IaC) con README exhaustivo y comentarios |
+| Scripts de deployment manuales que solo QUIND conoce | CI/CD automatizado documentado que cualquier DevOps puede mantener |
+
+**Regla:** Si QUIND desaparece mañana, el cliente debe poder contratar a cualquier otro equipo técnico competente y continuar sin fricción.
+
+**3. Documentación exhaustiva de transferencia**
+
+Al finalizar cada fase o engagement, QUIND entrega:
+
+- **Architecture Decision Records (ADRs)**: Historial completo de decisiones arquitectónicas con justificaciones
+- **Diagramas C4 actualizados**: Contexto, Contenedores, Componentes y Código (según nivel de detalle requerido)
+- **Runbooks operativos**: Procedimientos de deployment, rollback, troubleshooting y recuperación ante desastres
+- **README técnico por módulo/servicio**: Cómo ejecutar localmente, cómo probar, cómo desplegar, dependencias
+- **Knowledge base**: Wiki o Confluence con guías técnicas de patrones implementados
+
+**Formato de entrega:** Repositorio de documentación en Markdown (versionado junto al código), accesible sin herramientas propietarias.
+
+**4. Capacitación práctica continua (No solo documentos)**
+
+La transferencia de conocimiento se hace mediante práctica, no solo entregando documentación:
+
+- **Pair programming**: Desarrolladores del cliente codean junto a developers de QUIND
+- **Shadowing en decisiones**: Equipo del cliente participa en definición de ADRs, diseño de componentes
+- **Code reviews compartidos**: Cliente revisa código de QUIND y viceversa
+- **Handover sessions**: Sesiones técnicas de 2-3 días cubriendo toda la arquitectura implementada
+- **Post-handover support**: Canal de consultas asíncronas disponible durante periodo definido
+
+**Objetivo medible:** Al finalizar el engagement, al menos 2-3 miembros del equipo del cliente deben poder:
+- Explicar las decisiones arquitectónicas principales
+- Implementar nuevas funcionalidades sin soporte de QUIND
+- Resolver incidentes técnicos comunes sin escalar a QUIND
+
+---
+
+#### **Indicadores de autonomía lograda**
+
+¿Cómo sabemos que el cliente realmente puede caminar solo?
+
+| **Indicador** | **Cómo se mide** | **Objetivo** |
+|--------------|-----------------|-------------|
+| **Autonomía en desarrollo** | Porcentaje de features nuevas implementadas por el equipo del cliente sin consultar a QUIND | > 80% a los 6 meses post-handover |
+| **Autonomía en troubleshooting** | Porcentaje de incidentes resueltos por el equipo del cliente sin escalar a QUIND | > 75% |
+| **Comprensión arquitectónica** | Equipo del cliente puede explicar arquitectura a nuevos miembros sin documentación de QUIND | Validado en sesión de onboarding de nuevo miembro |
+| **Independencia de deployment** | Número de despliegues exitosos a producción ejecutados por el cliente sin QUIND | > 10 deployments independientes |
+| **Confianza del cliente** | Respuesta a: "¿Se sienten capaces de continuar sin QUIND?" | Respuesta afirmativa de tech lead del cliente |
+
+---
+
+#### **Cuándo SÍ es esperable (y saludable) que el cliente siga contratando a QUIND**
+
+No toda continuación de la relación es dependencia negativa. Es esperable que el cliente continúe contratando a QUIND en estos casos:
+
+| **Escenario** | **Tipo de relación** | **Es dependencia negativa?** |
+|--------------|---------------------|----------------------------|
+| Cliente quiere agregar capacidades nuevas (ML, analytics avanzado) donde no tiene expertise | Staff augmentation puntual o nueva fase de Co-Build | **NO** - Es crecimiento natural |
+| Cliente quiere second opinion en decisiones arquitectónicas críticas | Consultoría on-demand (retainer mensual) | **NO** - Es asesoría estratégica |
+| Cliente NO tiene equipo para mantener y prefiere enfocarse en negocio | Managed services o soporte continuo | **NO** - Es decisión estratégica del cliente |
+| Cliente NO PUEDE resolver problemas técnicos sin QUIND después de 12+ meses | Dependencia técnica real | **SÍ** - Falla en la transferencia de conocimiento |
+| Código/infra en cuentas de QUIND, cliente no puede acceder sin nosotros | Lock-in técnico | **SÍ** - Violación del modelo QUIND |
+
+---
+
+#### **Garantía contractual de no lock-in**
+
+QUIND incluye en contratos de Full Build y Co-Build:
+
+> **"Al finalizar el engagement, el cliente tendrá acceso completo y perpetuo a:**
+> - Todo el código fuente en repositorios de su propiedad
+> - Infraestructura cloud en cuentas a su nombre
+> - Documentación técnica completa (ADRs, diagramas, runbooks)
+> - Credenciales y secretos bajo su control
+>
+> **El cliente puede terminar la relación con QUIND en cualquier momento sin:**
+> - Penalizaciones contractuales
+> - Pérdida de acceso a activos técnicos
+> - Retención de conocimiento o documentación por parte de QUIND
+>
+> **Si el cliente demuestra que QUIND creó dependencias técnicas artificiales (frameworks propietarios, configuraciones que solo QUIND entiende, código deliberadamente ofuscado), QUIND se compromete a eliminarlas sin costo adicional."**
+
+---
+
+#### **Síntesis**
+
+**Respuesta directa: El cliente NO quedará atado a QUIND si:**
+
+1. Elige un modelo de servicio acorde a su capacidad de absorción de conocimiento
+2. Participa activamente en la transferencia de conocimiento (no delega 100%)
+3. QUIND cumple con los 4 pilares anti-dependencia (ownership, estándares abiertos, documentación, capacitación)
+
+**Puede continuar contratando a QUIND por valor agregado, no por dependencia forzada.**
+
+> **En resumen:** El cliente puede caminar solo si lo desea. QUIND diseña para autonomía, no para lock-in. Continuidad de la relación debe ser por elección estratégica del cliente, no por imposibilidad técnica de separarse.
