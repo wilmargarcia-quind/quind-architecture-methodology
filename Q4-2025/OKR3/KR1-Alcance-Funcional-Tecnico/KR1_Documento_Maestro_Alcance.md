@@ -3,7 +3,6 @@
 
 **_Responsable:_** Wilmar Dario Garcia Valderrama
 **Estado:** En curso
- > _Hola_
 
 ---
 
