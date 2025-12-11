@@ -1,9 +1,9 @@
 # KR1 - Alcance Funcional y Técnico
 ## Contexto actual del Servicio de Arquitectura de Soluciones **QUIND**
 
-**Responsable:** Wilmar Dario Garcia Valderrama
+**_Responsable:_** Wilmar Dario Garcia Valderrama
 **Estado:** En curso
-
+ > _Hola_
 
 ---
 
@@ -720,3 +720,159 @@ QUIND incluye en contratos de Full Build y Co-Build:
 **Puede continuar contratando a QUIND por valor agregado, no por dependencia forzada.**
 
 > **En resumen:** El cliente puede caminar solo si lo desea. QUIND diseña para autonomía, no para lock-in. Continuidad de la relación debe ser por elección estratégica del cliente, no por imposibilidad técnica de separarse.
+
+---
+
+### **¿Qué rol tendrán los arquitectos QUIND? ¿Líderes, policías, consultores o todo a la vez?**
+
+#### **Respuesta directa: Los arquitectos QUIND son HABILITADORES, no policías ni dueños del código**
+
+**La filosofía del rol:**
+
+El arquitecto QUIND NO es:
+- Un "guardián" que aprueba/rechaza todo el código
+- Un manager de personas (no gestiona performance reviews, vacaciones, etc.)
+- Un "policía" que impone tecnologías sin consenso
+- Un implementador individual (no codea todo solo)
+
+El arquitecto QUIND SÍ es:
+- Un **facilitador de decisiones técnicas** con criterio basado en experiencia cross-industry
+- Un **mentor técnico** que transfiere conocimiento mediante práctica
+- Un **validador pragmático** que asegura que decisiones cumplan requisitos no funcionales
+- Un **líder técnico situacional** que puede tomar decisiones cuando hay parálisis, pero busca consenso primero
+
+---
+
+#### **El rol del arquitecto según el modelo de servicio**
+
+El nivel de autoridad y responsabilidad varía según el engagement:
+
+| **Modelo** | **Rol del Arquitecto QUIND** | **Autoridad de decisión** | **Tiempo dedicado** |
+|-----------|----------------------------|-------------------------|-------------------|
+| **Design & Transfer** | Consultor arquitectónico + Validador | Propone opciones, cliente decide con su input | Puntual (4-8 semanas) |
+| **Co-Build** | Tech Lead arquitectónico + Mentor | Co-decide con cliente, lidera aspectos técnicos críticos | Tiempo parcial durante implementación (3-6 meses) |
+| **Full Build** | Arquitecto ejecutivo + Líder técnico | Decide aspectos técnicos con aprobación de sponsor del cliente | Tiempo completo durante todo el proyecto |
+
+---
+
+#### **Responsabilidades concretas del arquitecto QUIND**
+
+**1. Decisiones arquitectónicas (con consenso, no imposición)**
+
+El arquitecto LIDERA el proceso de decisión, pero NO decide unilateralmente:
+
+**Proceso:**
+1. Identifica necesidad de decisión arquitectónica
+2. Propone 2-3 opciones viables con trade-offs documentados
+3. Facilita discusión con equipo técnico del cliente
+4. Documenta decisión en ADR firmado por sponsor del cliente
+5. Valida implementación de la decisión con PoCs si es crítico
+
+**Regla:** Decisiones arquitectónicas críticas (que afectan presupuesto, plazos o modelo operativo del cliente) requieren aprobación explícita del sponsor del cliente. El arquitecto QUIND no puede imponerlas.
+
+**2. Guía técnica y mentoría (no micromanagement)**
+
+El arquitecto NO revisa cada línea de código, pero SÍ:
+- Define estándares de código y arquitectura (con el equipo, no unilateralmente)
+- Realiza arquitecture reviews periódicos (semanales/quincenales)
+- Identifica deuda técnica y propone plan de remediación
+- Capacita en patrones arquitectónicos mediante pair programming
+- Resuelve bloqueos técnicos complejos que el equipo no puede resolver solo
+
+**Límite:** El arquitecto NO gestiona tareas individuales del día a día. Eso es responsabilidad del Tech Lead de implementación o del Scrum Master.
+
+**3. Validación de adherencia arquitectónica (health checks, no auditorías punitivas)**
+
+El arquitecto verifica que la implementación sigue la arquitectura diseñada, pero con enfoque constructivo:
+
+**Qué hace:**
+- Architecture Fitness Functions: Métricas automatizadas que validan cumplimiento (ej: cobertura de tests > 70%)
+- Code reviews enfocados en patrones arquitectónicos (no sintaxis)
+- Identifica desviaciones y propone correcciones
+
+**Qué NO hace:**
+- "Rechazar" código por no seguir su "estilo personal"
+- Bloquear deployments sin justificación técnica clara
+- Imponer tecnologías por preferencia personal sin ADR que lo justifique
+
+**Regla:** Si el arquitecto encuentra una desviación de la arquitectura, debe documentarla, explicar el riesgo técnico y proponer solución. No es un "veto" arbitrario.
+
+**4. Gestión de riesgos técnicos (identificación temprana)**
+
+El arquitecto es responsable de anticipar y mitigar riesgos técnicos:
+- Identificar cuellos de botella de rendimiento antes de que exploten en producción
+- Detectar problemas de escalabilidad temprano
+- Alertar sobre deuda técnica que se está acumulando peligrosamente
+- Proponer planes de contingencia para escenarios de falla
+
+**Comunicación:** El arquitecto reporta riesgos técnicos al sponsor del cliente, no los oculta para "no quedar mal".
+
+**5. Evangelización y alineación del equipo (no imposición)**
+
+El arquitecto asegura que todo el equipo (QUIND + cliente) entienda y compre la visión arquitectónica:
+- Workshops de arquitectura colaborativos (Event Storming, C4 modeling)
+- Presentaciones de decisiones arquitectónicas a stakeholders técnicos y de negocio
+- Responder preguntas y dudas del equipo sobre por qué se eligieron ciertos patrones
+
+**Objetivo:** Que el equipo entienda el "por qué", no solo el "qué". Decisiones arquitectónicas se siguen por convicción, no por miedo.
+
+---
+
+#### **Lo que el arquitecto QUIND NO hace (límites claros)**
+
+Para evitar confusión de roles:
+
+| **Lo que NO hace el Arquitecto QUIND** | **Quién lo hace** |
+|---------------------------------------|------------------|
+| Gestionar backlog de producto (priorizar features) | Product Owner del cliente |
+| Gestionar personas (evaluaciones de desempeño, 1-on-1s) | Manager del cliente o Tech Lead |
+| Implementar el 100% del código crítico solo | Equipo de desarrollo (con mentoría del arquitecto) |
+| Aprobar/rechazar requisitos funcionales de negocio | Stakeholders de negocio del cliente |
+| Soporte L1/L2/L3 de incidentes operativos | Equipo de operaciones del cliente (el arquitecto puede asesorar en L3 técnico) |
+| Negociar con proveedores de infraestructura | Procurement del cliente (el arquitecto puede asesorar técnicamente) |
+
+---
+
+#### **Perfil y habilidades del arquitecto QUIND**
+
+¿Qué características debe tener un arquitecto en este modelo?
+
+**Habilidades técnicas (obvias):**
+- Experiencia en múltiples estilos arquitectónicos (monolitos, microservicios, event-driven, etc.)
+- Conocimiento profundo de cloud (GCP/AWS/Azure)
+- Capacidad de codear (no solo diagramas en PowerPoint)
+- Experiencia con patrones modernos (DDD, CQRS, Service Mesh, etc.)
+
+**Habilidades blandas (críticas):**
+- **Facilitación de consenso**: Saber negociar decisiones técnicas sin imposición
+- **Comunicación clara**: Explicar conceptos complejos a audiencias no técnicas
+- **Humildad técnica**: Reconocer cuando no sabe algo y buscar ayuda
+- **Empatía**: Entender restricciones del cliente (presupuesto, tiempo, capacidad del equipo)
+- **Pragmatismo**: Preferir soluciones simples que funcionen sobre arquitecturas elegantes pero complejas
+
+**Anti-perfil (lo que NO queremos):**
+- "Arquitecto torre de marfil" que diseña sin validar con código
+- "Arquitecto policía" que bloquea todo sin justificación técnica
+- "Arquitecto dogmático" que impone su tecnología favorita sin considerar contexto del cliente
+- "Arquitecto estrella de rock" que codea todo solo y no transfiere conocimiento
+
+---
+
+#### **¿Cómo se mide el éxito del arquitecto QUIND?**
+
+No solo por entregables técnicos, sino por impacto en el equipo:
+
+| **Indicador de éxito** | **Cómo se mide** |
+|----------------------|-----------------|
+| **Claridad de decisiones** | % de ADRs que el equipo entiende y sigue sin necesidad de re-explicación constante |
+| **Transferencia de conocimiento** | Número de miembros del equipo del cliente que pueden explicar decisiones arquitectónicas sin ayuda |
+| **Pragmatismo** | % de arquitectura implementada vs. diseñada (si hay mucho diseño no implementado, hay over-engineering) |
+| **Satisfacción del equipo** | NPS del equipo de desarrollo hacia el arquitecto QUIND |
+| **Velocidad habilitada** | Reducción en tiempo de implementación de features comparado con baseline |
+| **Calidad técnica** | Reducción de bugs críticos y deuda técnica acumulada |
+
+---
+
+#### **Síntesis**
+
+> **El arquitecto QUIND es un habilitador técnico, no un guardián ni un dictador. Su éxito se mide por la autonomía que logra transferir al equipo del cliente, no por la cantidad de decisiones que controla. Lidera con experiencia y consenso, no con autoridad impuesta.**
